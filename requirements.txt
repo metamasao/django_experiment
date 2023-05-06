@@ -1,2 +1,6 @@
-django
-psycopg2
+asgiref==3.6.0
+backports.zoneinfo==0.2.1
+Django==4.2.1
+django-extensions==3.2.1
+psycopg2==2.9.6
+sqlparse==0.4.4
