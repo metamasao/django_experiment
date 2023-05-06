@@ -5,6 +5,7 @@ jobs:
       - image: cimg/python:3.8
         environment:
           DJANGO_ALLOWED_HOSTS: "localhost, 127.0.0.1"
+          DJANGO_SECRET_KEY: "MV2WteTvy7SNmMSwM-LEdlwaungJUs6Kc367KwFWsS8lhgvq1YM"
           POSTGRES_USER: "postgres-test"
           POSTGRES_PASSWORD: "test-password"
           POSTGRES_PORT: "5432"
