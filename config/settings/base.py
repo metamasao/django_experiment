@@ -106,3 +106,57 @@ TEMPLATES = [
     },
 ]
 
+# ---------------------DJANGO LOGGING CONFIG-----------------------------
+DJANGO_LOGFILE_PATH = os.environ.setdefault("DJANGO_LOGFILE_PATH", str(BASE_DIR))
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "diet_commands_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "formatter": "verbose",
+            "filename": DJANGO_LOGFILE_PATH + "/log/django/diet/commands.log"
+        },
+        "diet_views_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "formatter": "verbose",
+            "filename": DJANGO_LOGFILE_PATH + "/log/django/diet/views.log"
+        },
+    },
+    "loggers": {
+        "root": {
+            "handlers": ["console"],
+        },
+        "django": {
+            "handlers": ["console"],
+            "propagate": True,
+        },
+        "diet.views": {
+            "handlers": ["diet_views_file"],
+            "level": "INFO",
+            "propagate": False
+        },
+        "diet.management.commands": {
+            "handlers": ["diet_commands_file"],
+            "level": "INFO",
+            "propagate": False
+        }
+    },
+}
